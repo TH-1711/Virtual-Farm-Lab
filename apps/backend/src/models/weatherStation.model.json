@@ -1,0 +1,50 @@
+{
+  "@id": "dtmi:FarmLab:WeatherStation;1",
+  "@type": "Interface",
+  "displayName": "WeatherStation",
+  "description": "Represents the weather station monitoring the farm.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": ["Property", "temperature"],
+      "name": "temperature",
+      "schema": "double",
+      "unit": "Celsius",
+      "description": "Temperature measured by the weather station."
+    },
+    {
+      "@type": "Property",
+      "name": "description",
+      "schema": "string",
+      "description": "Description of the weather condition."
+    },
+    {
+      "@type": ["Property", "humidity"],
+      "name": "humidity",
+      "schema": "double",
+      "unit": "Percent",
+      "description": "Humidity measured by the weather station."
+    },
+    {
+      "@type": ["Property", "windSpeed"],
+      "name": "windSpeed",
+      "schema": "double",
+      "unit": "MetersPerSecond",
+      "description": "Wind speed measured by the weather station."
+    },
+    {
+      "@type": ["Property", "windDirection"],
+      "name": "windDirection",
+      "schema": "double",
+      "unit": "Degrees",
+      "description": "Wind direction measured by the weather station."
+    },
+    {
+      "@type": ["Property", "windGustLevel"],
+      "name": "windGustLevel",
+      "schema": "double",
+      "unit": "MetersPerSecond",
+      "description": "Wind gust level measured by the weather station."
+    }
+  ]
+}

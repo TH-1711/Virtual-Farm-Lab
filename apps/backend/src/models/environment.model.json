@@ -1,0 +1,44 @@
+{
+  "@id": "dtmi:FarmLab:Environment;1",
+  "@type": "Interface",
+  "displayName": "Environment",
+  "description": "Represents environmental data for a production unit (e.g., Greenhouse).",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": ["Property", "temperature"],
+      "name": "temperature",
+      "schema": "double",
+      "unit": "Celsius",
+      "description": "Temperature inside the production unit."
+    },
+    {
+      "@type": ["Property", "humidity"],
+      "name": "humidity",
+      "schema": "double",
+      "unit": "Percent",
+      "description": "Humidity level inside the production unit."
+    },
+    {
+      "@type": ["Property", "co2"],
+      "name": "co2",
+      "schema": "double",
+      "unit": "PartsPerMillion",
+      "description": "CO2 concentration inside the production unit."
+    },
+    {
+      "@type": ["Property", "oxygen"],
+      "name": "oxygen",
+      "schema": "double",
+      "unit": "Percent",
+      "description": "Oxygen level inside the production unit."
+    },
+    {
+      "@type": ["Property", "lightIntensity"],
+      "name": "lightIntensity",
+      "schema": "double",
+      "unit": "Lux",
+      "description": "Light intensity inside the production unit."
+    }
+  ]
+}

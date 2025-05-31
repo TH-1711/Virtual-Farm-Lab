@@ -1,0 +1,22 @@
+{
+  "@id": "dtmi:FarmLab:AirControllerSystem;1",
+  "@type": "Interface",
+  "displayName": "AirControllerSystem",
+  "description": "Represents the air controller system for a production unit.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": ["Property", "fanSpeed"],
+      "name": "fanSpeed",
+      "schema": "double",
+      "unit": "RPM",
+      "description": "Speed of the air circulation fans."
+    },
+    {
+      "@type": "Property",
+      "name": "status",
+      "schema": "string",
+      "description": "Status of the air system (e.g., active, inactive)."
+    }
+  ]
+}

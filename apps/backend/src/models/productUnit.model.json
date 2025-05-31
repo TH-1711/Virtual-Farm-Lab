@@ -1,0 +1,43 @@
+{
+  "@id": "dtmi:FarmLab:ProductUnit;1",
+  "@type": "Interface",
+  "displayName": "ProductUnit",
+  "description": "Represents a production unit inside a farm, such as a greenhouse, field, pond, or barn.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "type",
+      "schema": "string",
+      "description": "Type of production unit (e.g., Greenhouse, Field, Pond, Barn)."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasPlant",
+      "displayName": "Product Unit Has Plant",
+      "target": "dtmi:FarmLab:Plant;1",
+      "description": "Relationship to plants growing in the production unit."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasWaterController",
+      "displayName": "Product Unit Has Water Controller",
+      "target": "dtmi:FarmLab:WaterControllerSystem;1",
+      "description": "Relationship to the water controller system for the product unit."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasAirController",
+      "displayName": "Product Unit Has Air Controller",
+      "target": "dtmi:FarmLab:AirControllerSystem;1",
+      "description": "Relationship to the air controller system for the product unit."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasLightController",
+      "displayName": "Product Unit Has Light Controller",
+      "target": "dtmi:FarmLab:LightControllerSystem;1",
+      "description": "Relationship to the lights controller system for the product unit."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "@id": "dtmi:FarmLab:LightsControllerSystem;1",
+  "@type": "Interface",
+  "displayName": "LightsControllerSystem",
+  "description": "Represents the lights controller system for a production unit.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": ["Property", "lightOutput"],
+      "name": "lightOutput",
+      "schema": "double",
+      "unit": "Lux",
+      "description": "Light intensity being provided to the plants."
+    },
+    {
+      "@type": "Property",
+      "name": "status",
+      "schema": "string",
+      "description": "Status of the lights system (e.g., active, inactive)."
+    }
+  ]
+}

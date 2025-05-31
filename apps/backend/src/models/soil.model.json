@@ -1,0 +1,50 @@
+{
+  "@id": "dtmi:FarmLab:Soil;1",
+  "@type": "Interface",
+  "displayName": "Soil",
+  "description": "Represents soil data for a production unit.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "soilType",
+      "schema": "string",
+      "description": "Type of soil (e.g., loamy, sandy, clay)."
+    },
+    {
+      "@type": ["Property", "moistureLevel"],
+      "name": "moistureLevel",
+      "schema": "double",
+      "unit": "Percent",
+      "description": "Current moisture level of the soil."
+    },
+    {
+      "@type": ["Property", "pHLevel"],
+      "name": "pHLevel",
+      "schema": "double",
+      "unit": "None",
+      "description": "pH level of the soil."
+    },
+    {
+      "@type": ["Property", "temperature"],
+      "name": "temperature",
+      "schema": "double",
+      "unit": "Celsius",
+      "description": "Soil temperature."
+    },
+    {
+      "@type": ["Property", "nutrientLevel"],
+      "name": "nutrientLevel",
+      "schema": "double",
+      "unit": "Percent",
+      "description": "Nutrient level of the soil."
+    },
+    {
+      "@type": ["Property", "salinityLevel"],
+      "name": "salinityLevel",
+      "schema": "double",
+      "unit": "Percent",
+      "description": "Salinity level of the soil."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "@id": "dtmi:FarmLab:Farm;1",
+  "@type": "Interface",
+  "displayName": "Farm",
+  "description": "Represents the overall farm as a container for other entities.",
+  "comment": "Top-level model for managing all farm entities.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "location",
+      "schema": "string",
+      "description": "Geographic location of the farm."
+    },
+    {
+      "@type": "Property",
+      "name": "coordinates",
+      "schema": "string",
+      "description": "Geographic coordinates of the farm."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasProductUnit",
+      "displayName": "Farm Has Production Unit",
+      "target": "dtmi:FarmLab:ProductUnit;1",
+      "description": "Relationship to the Product Unit in the farm."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasWeatherStation",
+      "displayName": "Has Weather Station",
+      "target": "dtmi:FarmLab:WeatherStation;1",
+      "description": "Relationship to the weather station monitoring the farm."
+    }
+  ]
+}

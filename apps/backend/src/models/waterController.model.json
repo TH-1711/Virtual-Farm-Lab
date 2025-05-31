@@ -1,0 +1,22 @@
+{
+  "@id": "dtmi:FarmLab:WaterControllerSystem;1",
+  "@type": "Interface",
+  "displayName": "WaterControllerSystem",
+  "description": "Represents the water controller system for a production unit.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": ["Property", "flowRate"],
+      "name": "flowRate",
+      "schema": "double",
+      "unit": "LitersPerMinute",
+      "description": "Flow rate of water through the irrigation system."
+    },
+    {
+      "@type": "Property",
+      "name": "status",
+      "schema": "string",
+      "description": "Status of the water system (e.g., active, inactive)."
+    }
+  ]
+}

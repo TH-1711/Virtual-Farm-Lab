@@ -1,0 +1,47 @@
+{
+  "@id": "dtmi:FarmLab:Plant;1",
+  "@type": "Interface",
+  "displayName": "Plant",
+  "description": "Represents plants growing in a production unit.",
+  "@context": "dtmi:dtdl:context;2",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "species",
+      "schema": "string",
+      "description": "Species or type of the plant."
+    },
+    {
+      "@type": "Property",
+      "name": "tag",
+      "schema": "string",
+      "description": "Unique identifier for the plant."
+    },
+    {
+      "@type": "Property",
+      "name": "growthStage",
+      "schema": "string",
+      "description": "Current stage of growth (e.g., seedling, vegetative, flowering)."
+    },
+    {
+      "@type": "Property",
+      "name": "plantingDate",
+      "schema": "date",
+      "description": "Date when the plant was planted."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasEnvironmentConfig",
+      "displayName": "Plant Has Environment Config",
+      "target": "dtmi:FarmLab:Environment;1",
+      "description": "Relationship to environmental data for the product unit."
+    },
+    {
+      "@type": "Relationship",
+      "name": "hasSoilConfig",
+      "displayName": "Plant Has Soil Config",
+      "target": "dtmi:FarmLab:Soil;1",
+      "description": "Relationship to soil data for the product unit."
+    }
+  ]
+}
