@@ -54,4 +54,10 @@ deleteModel(@Param('id') id: string) {
   return this.twinService.deleteModel(id);
 }
 
+  @Post('mock-data')
+  async mockAllTwins() {
+    await this.twinService.mockUpdateAllTwins();
+    return { message: 'Mock data applied to all applicable twins' };
+  }
+
 }

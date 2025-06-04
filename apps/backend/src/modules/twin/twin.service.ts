@@ -8,6 +8,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { DigitalTwinsModelData } from '@azure/digital-twins-core';
 
+function random(min: number, max: number): number {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+}
 
 @Injectable()
 export class TwinService {
@@ -85,7 +88,24 @@ export class TwinService {
 
   async getAllTwins(): Promise<any[]> {
   try {
-    return await this.twinAdapter.queryAllTwins();
+    const res = await this.twinAdapter.queryAllTwins();
+    await this.twinModel.bulkWrite(
+  res.map(twin => ({
+    updateOne: {
+      filter: { twinId: twin.$dtId },
+      update: {
+        $setOnInsert: {
+          twinId: twin.$dtId,
+          modelId: twin.$metadata.$model,
+          properties: twin,
+        },
+      },
+      upsert: true,
+    },
+  }))
+);
+
+    return res;
   } catch (error) {
     this.logger.error(`Failed to fetch all twins from ADT: ${error.message}`);
     throw new InternalServerErrorException('Failed to fetch all twins from ADT');
@@ -131,4 +151,57 @@ export class TwinService {
             }
         }
     }
+
+
+    async mockUpdateAllTwins(): Promise<void> {
+    const twins = await this.getAllTwins(); // returns all twins from ADT
+
+    for (const twin of twins) {
+      const twinId = twin.$dtId;
+      const model = twin.$metadata?.$model;
+
+      let patch: UpdateTwinDto['patch'] = [];
+
+      if (model?.includes('Environment')) {
+        patch = [
+          { op: 'replace', path: '/temperature', value: random(20, 35) },
+          { op: 'replace', path: '/humidity', value: random(30, 80) },
+          { op: 'replace', path: '/co2', value: random(300, 600) },
+          { op: 'replace', path: '/oxygen', value: random(18, 22) },
+          { op: 'replace', path: '/lightIntensity', value: random(100, 1000) },
+        ];
+      } else if (model?.includes('Soil')) {
+        patch = [
+          { op: 'replace', path: '/moistureLevel', value: random(20, 80) },
+          { op: 'replace', path: '/temperature', value: random(15, 35) },
+          { op: 'replace', path: '/pHLevel', value: random(5.5, 7.5) },
+          { op: 'replace', path: '/nutrientLevel', value: random(10, 100) },
+          { op: 'replace', path: '/salinityLevel', value: random(1, 10) },
+        ];
+      } else if (model?.includes('WeatherStation')) {
+        patch = [
+          { op: 'replace', path: '/temperature', value: random(280, 310) },
+          { op: 'replace', path: '/humidity', value: random(10, 90) },
+          { op: 'replace', path: '/windSpeed', value: random(0, 10) },
+          { op: 'replace', path: '/windDirection', value: Math.floor(random(0, 360)) },
+          { op: 'replace', path: '/windGustLevel', value: random(0, 10) },
+        ];
+      } else if (model?.includes('Plant')) {
+        patch = [
+          {
+            op: 'replace',
+            path: '/growthStage',
+            value: ['Seedling', 'Vegetative', 'Flowering', 'Fruiting'][Math.floor(Math.random() * 4)],
+          },
+        ];
+      }
+
+      if (patch.length > 0) {
+        console.log(`🔄 Updating twinId: ${twinId}`);
+      console.log(`📘 Model: ${model}`);
+      console.log(`🛠️ Patch:`, patch);
+        await this.updateTwin({ twinId, patch });
+      }
+    }
+  }
 }

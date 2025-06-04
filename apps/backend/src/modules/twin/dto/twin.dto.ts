@@ -1,4 +1,24 @@
-import { IsString, IsNotEmpty, IsObject, Matches } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsObject,
+  IsArray,
+  ValidateNested,
+} from 'class-validator';
+import { Type } from 'class-transformer';
+
+// Patch operation object (for JSON Patch)
+class PatchOperation {
+  @IsString()
+  @IsNotEmpty()
+  op: 'replace' | 'add' | 'remove';
+
+  @IsString()
+  @IsNotEmpty()
+  path: string;
+
+  value: any;
+}
 
 export class CreateTwinDto {
   @IsString()
@@ -19,9 +39,10 @@ export class UpdateTwinDto {
   @IsNotEmpty()
   readonly twinId: string;
 
-  @IsObject()
-  @IsNotEmpty()
-  readonly patch: Array<{ op: string; path: string; value: any }>;
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => PatchOperation)
+  readonly patch: PatchOperation[];
 }
 
 export class DeleteTwinDto {

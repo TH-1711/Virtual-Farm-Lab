@@ -7,7 +7,10 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
-    MongooseModule.forRoot(process.env.MONGODB_URI || ''),
+     MongooseModule.forRoot(process.env.MONGODB_URI!, {
+      ssl: true, // cần bật SSL
+      retryWrites: false, // Cosmos yêu cầu flag này
+    }),
     TwinModule
   ],
 })
